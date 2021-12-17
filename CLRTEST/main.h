@@ -38,6 +38,9 @@ namespace CLRTEST {
 	protected:
 	private: System::Windows::Forms::NumericUpDown^ numericUpDown1;
 	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ step;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ po;
+	private: System::Windows::Forms::Button^ button2;
 
 	private:
 		/// <summary>
@@ -52,9 +55,13 @@ namespace CLRTEST {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(main::typeid));
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->numericUpDown1 = (gcnew System::Windows::Forms::NumericUpDown());
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->step = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->po = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown1))->BeginInit();
 			this->SuspendLayout();
@@ -62,11 +69,12 @@ namespace CLRTEST {
 			// dataGridView1
 			// 
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Location = System::Drawing::Point(72, 50);
+			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) { this->step, this->po });
+			this->dataGridView1->Location = System::Drawing::Point(0, 0);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->RowHeadersWidth = 51;
 			this->dataGridView1->RowTemplate->Height = 24;
-			this->dataGridView1->Size = System::Drawing::Size(807, 194);
+			this->dataGridView1->Size = System::Drawing::Size(669, 246);
 			this->dataGridView1->TabIndex = 0;
 			// 
 			// numericUpDown1
@@ -87,11 +95,37 @@ namespace CLRTEST {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &main::button1_Click);
 			// 
+			// step
+			// 
+			this->step->HeaderText = L"Степень";
+			this->step->MinimumWidth = 6;
+			this->step->Name = L"step";
+			this->step->Width = 125;
+			// 
+			// po
+			// 
+			this->po->HeaderText = L"Число";
+			this->po->MinimumWidth = 6;
+			this->po->Name = L"po";
+			this->po->Width = 125;
+			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(919, 199);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(75, 23);
+			this->button2->TabIndex = 3;
+			this->button2->Text = L"button2";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &main::button2_Click);
+			// 
 			// main
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(1136, 404);
+			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->numericUpDown1);
 			this->Controls->Add(this->dataGridView1);
@@ -157,6 +191,19 @@ namespace CLRTEST {
 		{
 			dataGridView1->Columns->Add(i.ToString(), (i + 1).ToString());
 		}
+		int chislo = 15;
+		for (int i = 0; i < chislo; i++)
+		{
+			dataGridView1->Rows->Add(Math::Pow(2, i).ToString(),i.ToString());
+		}
 	}
-	};
+	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		dataGridView1->Rows->Clear();
+		int chislo = Convert::ToInt16( numericUpDown1->Value);
+		for (int i = 1; i <= chislo; i++)
+		{
+			dataGridView1->Rows->Add( i.ToString(),Math::Pow(2, i).ToString());
+		}
+	}
+};
 }
