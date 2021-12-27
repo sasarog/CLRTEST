@@ -154,7 +154,7 @@ namespace ArraysCLR {
 				dgvTabl->Rows[i]->Cells[j]->Value = mas[i][j];
 			}
 		}
-
+		dgvTabl->Columns->Remove("0");
 	}
 
 	private: System::Void numUpDownStolb_ValueChanged(System::Object^ sender, System::EventArgs^ e) {
