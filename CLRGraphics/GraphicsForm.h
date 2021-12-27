@@ -39,6 +39,7 @@ namespace CLRGraphics {
 	protected:
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::NumericUpDown^ numericUpDown1;
+	private: System::Windows::Forms::Button^ button2;
 
 	private:
 		/// <summary>
@@ -56,6 +57,7 @@ namespace CLRGraphics {
 			this->picBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->numericUpDown1 = (gcnew System::Windows::Forms::NumericUpDown());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown1))->BeginInit();
 			this->SuspendLayout();
@@ -71,11 +73,11 @@ namespace CLRGraphics {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(121, 13);
+			this->button1->Location = System::Drawing::Point(45, 13);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 23);
+			this->button1->Size = System::Drawing::Size(172, 22);
 			this->button1->TabIndex = 1;
-			this->button1->Text = L"button1";
+			this->button1->Text = L"Рисование Домика";
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &GraphicsForm::button1_Click);
 			// 
@@ -86,11 +88,22 @@ namespace CLRGraphics {
 			this->numericUpDown1->Size = System::Drawing::Size(120, 22);
 			this->numericUpDown1->TabIndex = 2;
 			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(422, 13);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(197, 23);
+			this->button2->TabIndex = 3;
+			this->button2->Text = L"Рисование Функции";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &GraphicsForm::button2_Click);
+			// 
 			// GraphicsForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1593, 820);
+			this->Controls->Add(this->button2);
 			this->Controls->Add(this->numericUpDown1);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->picBox1);
@@ -148,5 +161,21 @@ namespace CLRGraphics {
 			drawdom(i);
 		}
 	}
-	};
+	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		Graphics^ g = picBox1->CreateGraphics();
+		g->Clear(Color::DarkTurquoise);
+		double xkon = 10;
+		Point a(0, 0);
+		Pen^ pen = gcnew Pen(Color::Red);
+		//pen->Color = Color::HotPink;
+		//pen->Width = 2;
+		for (double x = -1; x <= xkon; x+=0.01)
+		{
+			double y =  Math::Sin(x);
+			Point b(Convert::ToInt32(x*100), Convert::ToInt32(y*100)+250);
+			g->DrawLine(pen, a, b);
+			a = b;
+		}
+	}
+};
 }
