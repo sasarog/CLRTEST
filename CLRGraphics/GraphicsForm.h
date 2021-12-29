@@ -40,6 +40,7 @@ namespace CLRGraphics {
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::NumericUpDown^ numericUpDown1;
 	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::Button^ button3;
 
 	private:
 		/// <summary>
@@ -58,6 +59,7 @@ namespace CLRGraphics {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->numericUpDown1 = (gcnew System::Windows::Forms::NumericUpDown());
 			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->button3 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown1))->BeginInit();
 			this->SuspendLayout();
@@ -98,11 +100,22 @@ namespace CLRGraphics {
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Click += gcnew System::EventHandler(this, &GraphicsForm::button2_Click);
 			// 
+			// button3
+			// 
+			this->button3->Location = System::Drawing::Point(649, 12);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(239, 23);
+			this->button3->TabIndex = 4;
+			this->button3->Text = L"Вывести картинку";
+			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &GraphicsForm::button3_Click);
+			// 
 			// GraphicsForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1593, 820);
+			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->numericUpDown1);
 			this->Controls->Add(this->button1);
@@ -169,13 +182,63 @@ namespace CLRGraphics {
 		Pen^ pen = gcnew Pen(Color::Red);
 		//pen->Color = Color::HotPink;
 		//pen->Width = 2;
-		for (double x = -1; x <= xkon; x+=0.01)
+		for (double x = -1; x <= xkon; x += 0.01)
 		{
-			double y =  Math::Sin(x);
-			Point b(Convert::ToInt32(x*100), Convert::ToInt32(y*100)+250);
+			double y = Math::Sin(x);
+			Point b(Convert::ToInt32(x * 100), Convert::ToInt32(y * 100) + 250);
 			g->DrawLine(pen, a, b);
 			a = b;
 		}
 	}
-};
+
+		   Point linia(Graphics^ g, Pen^ pen, Point nacalo, int x, int y) {
+			   int mashtab = Convert::ToInt16(numericUpDown1->Value);
+			   Point konec(nacalo.X + x*mashtab, nacalo.Y + y*mashtab);
+			   g->DrawLine(pen, nacalo, konec);
+			   return konec;
+		   }
+	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+		Graphics^ g = picBox1->CreateGraphics();
+		g->Clear(Color::LightSalmon);
+		//перо
+		Pen^ pen = gcnew Pen(Color::Red);
+		pen->Width = 3.0;
+		
+		Point p(9* Convert::ToInt16(numericUpDown1->Value), 
+			5* Convert::ToInt16(numericUpDown1->Value));
+
+		p = linia(g, pen, p, 1, 1);
+		p = linia(g, pen, p, -2, -2);
+		p = linia(g, pen, p, 2, 0);
+		p = linia(g, pen, p, 2, 2);
+		p = linia(g, pen, p, -1, 0);
+		p = linia(g, pen, p, 0, -1);
+		p = linia(g, pen, p, -1, -1);
+		p = linia(g, pen, p, 1, 0);
+		p = linia(g, pen, p, 1, 1);
+		p = linia(g, pen, p, 0, -2);
+		p = linia(g, pen, p, -1, -1);
+		p = linia(g, pen, p, 1, -1);
+		p = linia(g, pen, p, -1, 0);
+		p = linia(g, pen, p, 0, -1);
+		p = linia(g, pen, p, -2, 0);
+		p = linia(g, pen, p, 0, 2);
+		p = linia(g, pen, p, 1, 1);
+		p = linia(g, pen, p, -4, 0);
+		p = linia(g, pen, p, 1, 1);
+		p = linia(g, pen, p, 1, 1);
+		p = linia(g, pen, p, 0, 1);
+		p = linia(g, pen, p, 1, 1);
+		p = linia(g, pen, p, 0, -2);
+		p = linia(g, pen, p, 2, 0);
+		p = linia(g, pen, p, -1, 1);
+		p = linia(g, pen, p, 0, -1);
+		p = linia(g, pen, p, -1, 1);
+		
+		
+		
+
+
+	}
+	};
 }
