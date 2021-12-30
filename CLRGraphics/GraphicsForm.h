@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Car.h"
 namespace CLRGraphics {
 
 	using namespace System;
@@ -41,6 +41,8 @@ namespace CLRGraphics {
 	private: System::Windows::Forms::NumericUpDown^ numericUpDown1;
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::Button^ button3;
+	private: System::Windows::Forms::Button^ button4;
+	private: System::Windows::Forms::Button^ button5;
 
 	private:
 		/// <summary>
@@ -60,6 +62,8 @@ namespace CLRGraphics {
 			this->numericUpDown1 = (gcnew System::Windows::Forms::NumericUpDown());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->button4 = (gcnew System::Windows::Forms::Button());
+			this->button5 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->picBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown1))->BeginInit();
 			this->SuspendLayout();
@@ -110,11 +114,33 @@ namespace CLRGraphics {
 			this->button3->UseVisualStyleBackColor = true;
 			this->button3->Click += gcnew System::EventHandler(this, &GraphicsForm::button3_Click);
 			// 
+			// button4
+			// 
+			this->button4->Location = System::Drawing::Point(933, 12);
+			this->button4->Name = L"button4";
+			this->button4->Size = System::Drawing::Size(159, 23);
+			this->button4->TabIndex = 5;
+			this->button4->Text = L"Крутить колесо";
+			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &GraphicsForm::button4_Click);
+			// 
+			// button5
+			// 
+			this->button5->Location = System::Drawing::Point(1119, 12);
+			this->button5->Name = L"button5";
+			this->button5->Size = System::Drawing::Size(75, 23);
+			this->button5->TabIndex = 6;
+			this->button5->Text = L"Т118";
+			this->button5->UseVisualStyleBackColor = true;
+			this->button5->Click += gcnew System::EventHandler(this, &GraphicsForm::button5_Click);
+			// 
 			// GraphicsForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1593, 820);
+			this->Controls->Add(this->button5);
+			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->numericUpDown1);
@@ -240,5 +266,75 @@ namespace CLRGraphics {
 
 
 	}
-	};
+	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+		
+		Graphics^ g = picBox1->CreateGraphics();
+		g->Clear(Color::LightSalmon);
+		wheel w(g,Color::Black, 6, 100,Point(500,500));
+		//перо
+		Pen^ pen = gcnew Pen(Color::Red);
+		pen->Width = 3.0;
+		for (int i = 0; i < 100; i++) {
+			g->Clear(Color::LightSalmon);
+			w.update(0.15);
+			Thread::Sleep(41);
+		}
+
+	}
+private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
+	Graphics^ g = picBox1->CreateGraphics();
+	int mashtab = Convert::ToInt16(numericUpDown1->Value);
+	g->Clear(Color::Lavender);
+	Pen^ pen = gcnew Pen(Color::Fuchsia);
+	Point A(2*mashtab, 5 * mashtab);
+	Point B(2 * mashtab,11 * mashtab);
+	Point C(4 * mashtab,11 * mashtab);
+	Point D(4 * mashtab,8 * mashtab);
+	Point E(10 * mashtab,8 * mashtab);
+	Point F(10 * mashtab,11 * mashtab);
+	Point G(22 * mashtab,11 * mashtab);
+	Point H(22 * mashtab,10 * mashtab);
+	Point I(24 * mashtab,8 * mashtab);
+	Point J(27 * mashtab,8 * mashtab);
+	Point K(30 * mashtab,11 * mashtab);
+	Point L(34 * mashtab,11 * mashtab);
+	Point M(34 * mashtab,8 * mashtab);
+	Point N(32 * mashtab,6 * mashtab);
+	Point O(30 * mashtab,6 * mashtab);
+	Point P(27 * mashtab,3 * mashtab);
+	Point Q(10 * mashtab,3 * mashtab);
+	Point R(7 * mashtab,6 * mashtab);
+	Point S(3 * mashtab,6 * mashtab);
+	Point kol(7 ,11 );
+	Point kol2(26 ,11 );
+	
+
+
+	g->DrawLine(pen, A, B);
+	g->DrawLine(pen, B, C);
+	g->DrawLine(pen, C, D);
+	g->DrawLine(pen, D, E);
+	g->DrawLine(pen, E, F);
+	g->DrawLine(pen, F, G);
+	g->DrawLine(pen, G, H);
+	g->DrawLine(pen, H, I);
+	g->DrawLine(pen, I, J);
+	g->DrawLine(pen, J, K);
+	g->DrawLine(pen, K, L);
+	g->DrawLine(pen, L, M);
+	g->DrawLine(pen, M, N);
+	g->DrawLine(pen, N, O);
+	g->DrawLine(pen, O, P);
+	g->DrawLine(pen, P, Q);
+	g->DrawLine(pen, Q, R);
+	g->DrawLine(pen, R, S);
+	g->DrawLine(pen, S, A);
+
+	g->DrawArc(pen, (kol.X - 2) * mashtab, (kol.Y - 2) * mashtab,
+		4 * mashtab, 4 * mashtab, 0, 360);
+	g->DrawArc(pen, (kol2.X - 2) * mashtab, (kol2.Y - 2) * mashtab,
+		4 * mashtab, 4 * mashtab, 0, 360);
+	
+}
+};
 }

@@ -126,7 +126,7 @@ namespace ArraysCLR {
 		int kolStrok = dgvTabl->RowCount - 1;
 		//Количество столбцов
 		int kolStolb = Convert::ToInt32(numUpDownStolb->Value);
-
+		
 		//создание массива
 		int** mas = new int* [kolStrok];
 		//Заполнение массива
