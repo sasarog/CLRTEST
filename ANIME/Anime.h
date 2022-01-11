@@ -8,6 +8,7 @@ namespace ANIME {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::IO;
 
 	/// <summary>
 	/// —водка дл€ Anime
@@ -22,6 +23,8 @@ namespace ANIME {
 
 
 		int rad = 49;          // переменна€ дл€ хранени€ радиуса рисуемых кругов
+	private: System::Windows::Forms::Button^ button2;
+	public:
 		Random rand;      // объект, дл€ получени€ случайных чисел
 
 		Anime(void)
@@ -68,6 +71,7 @@ namespace ANIME {
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -93,11 +97,22 @@ namespace ANIME {
 			// 
 			this->timer1->Tick += gcnew System::EventHandler(this, &Anime::timer1_Tick);
 			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(240, 599);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(179, 49);
+			this->button2->TabIndex = 2;
+			this->button2->Text = L"” самура€ нет цели, только путь";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &Anime::button2_Click);
+			// 
 			// Anime
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1121, 660);
+			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->pictureBox1);
 			this->Name = L"Anime";
@@ -119,7 +134,7 @@ namespace ANIME {
 
 		}
 	private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
-		
+
 
 
 		// затем оп€ть случайным образом выбираем координаты центров кругов
@@ -138,5 +153,24 @@ namespace ANIME {
 		gr->FillRectangle(fon, 0, 0, pictureBox1->Width, pictureBox1->Height);
 		timer1->Enabled = true;
 	}
-};
+		   private: Void AddText(FileStream^ fs, String^ value)
+		   {
+			   array<unsigned char>^ info = 
+				   (gcnew  System::Text::UTF8Encoding(true))->GetBytes(value);
+			   fs->Write(info, 0, info->Length);
+		   }
+	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		OpenFileDialog ofd;
+		if (ofd.ShowDialog() == System::Windows::Forms::DialogResult::Cancel) {
+			return;
+		}
+		MessageBox::Show(ofd.FileName);
+		System::IO::FileStream^ fStream;
+		fStream = File::OpenWrite(ofd.FileName);
+		AddText(fStream, "ksfjkjdsf");
+		fStream->Close();
+
+
+	}
+	};
 }
