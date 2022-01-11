@@ -16,15 +16,13 @@ namespace ANIME {
 	public ref class Anime : public System::Windows::Forms::Form
 	{
 	public:
+		Image^ img;
+		Point^ objectPosition = gcnew Point(0, 0);
 		Graphics^ gr;       //объ€вл€ем объект - графику, на которой будем рисовать
 		Pen^ p;             //объ€вл€ем объект - карандаш, которым будем рисовать контур
 		SolidBrush^ fon = gcnew SolidBrush(Color::HotPink);    //объ€вл€ем объект - заливки, дл€ заливки соответственно фона
 		SolidBrush^ fig = gcnew SolidBrush(Color::Black);    //и внутренности рисуемой фигуры
-
-
 		int rad = 49;          // переменна€ дл€ хранени€ радиуса рисуемых кругов
-	private: System::Windows::Forms::Button^ button2;
-	public:
 		Random rand;      // объект, дл€ получени€ случайных чисел
 
 		Anime(void)
@@ -50,8 +48,11 @@ namespace ANIME {
 		}
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	protected:
+	private:System::Windows::Forms::Button^ button3;
+	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::Timer^ timer1;
+	private: System::Windows::Forms::Timer^ timer2;
 	private: System::ComponentModel::IContainer^ components;
 
 	private:
@@ -72,6 +73,8 @@ namespace ANIME {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->timer2 = (gcnew System::Windows::Forms::Timer(this->components));
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -107,11 +110,27 @@ namespace ANIME {
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Click += gcnew System::EventHandler(this, &Anime::button2_Click);
 			// 
+			// button3
+			// 
+			this->button3->Location = System::Drawing::Point(426, 599);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(218, 49);
+			this->button3->TabIndex = 3;
+			this->button3->Text = L"ƒвигающийс€ объект";
+			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &Anime::button3_Click);
+			// 
+			// timer2
+			// 
+			this->timer2->Interval = 10;
+			this->timer2->Tick += gcnew System::EventHandler(this, &Anime::timer2_Tick);
+			// 
 			// Anime
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1121, 660);
+			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->pictureBox1);
@@ -135,7 +154,7 @@ namespace ANIME {
 		}
 	private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
 
-
+		gr->Clear(Color::Lavender);
 
 		// затем оп€ть случайным образом выбираем координаты центров кругов
 		// и рисуем их при помощи описанной нами функции
@@ -150,27 +169,47 @@ namespace ANIME {
 	}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		//сначала будем очищать область рисовани€ цветом фона
-		gr->FillRectangle(fon, 0, 0, pictureBox1->Width, pictureBox1->Height);
+
 		timer1->Enabled = true;
 	}
-		   private: Void AddText(FileStream^ fs, String^ value)
-		   {
-			   array<unsigned char>^ info = 
-				   (gcnew  System::Text::UTF8Encoding(true))->GetBytes(value);
-			   fs->Write(info, 0, info->Length);
-		   }
+	private: Void AddText(FileStream^ fs, String^ value)
+	{
+		array<unsigned char>^ info =
+			(gcnew  System::Text::UTF8Encoding(true))->GetBytes(value);
+		fs->Write(info, 0, info->Length);
+	}
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 		OpenFileDialog ofd;
 		if (ofd.ShowDialog() == System::Windows::Forms::DialogResult::Cancel) {
 			return;
 		}
 		MessageBox::Show(ofd.FileName);
-		System::IO::FileStream^ fStream;
+		FileStream^ fStream;
+
+
+
+
+
+		//Ёто дл€ записи в файл
+		/*System::IO::FileStream^ fStream;
 		fStream = File::OpenWrite(ofd.FileName);
 		AddText(fStream, "ksfjkjdsf");
-		fStream->Close();
+		fStream->Close();*/
 
 
+	}
+	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+		timer1->Enabled = false;
+		timer2->Enabled = true;
+	}
+	private: System::Void Anime_Load(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void timer2_Tick(System::Object^ sender, System::EventArgs^ e) {
+		gr->Clear(Color::MediumBlue);
+		gr->FillEllipse(fig, objectPosition->X, objectPosition->Y, rad, rad);
+		gr->DrawEllipse(p, objectPosition->X, objectPosition->Y, rad, rad);
+		objectPosition->X++;
+		objectPosition->Y++;
 	}
 	};
 }
