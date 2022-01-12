@@ -17,11 +17,13 @@ namespace ANIME {
 	{
 	public:
 		Image^ img;
-		Point^ objectPosition = gcnew Point(0, 0);
+		Point^ objectPosition = gcnew Point(100, 100);
 		Graphics^ gr;       //объ€вл€ем объект - графику, на которой будем рисовать
 		Pen^ p;             //объ€вл€ем объект - карандаш, которым будем рисовать контур
 		SolidBrush^ fon = gcnew SolidBrush(Color::HotPink);    //объ€вл€ем объект - заливки, дл€ заливки соответственно фона
 		SolidBrush^ fig = gcnew SolidBrush(Color::Black);    //и внутренности рисуемой фигуры
+	private: System::Windows::Forms::Timer^ timer3;
+	public:
 		int rad = 49;          // переменна€ дл€ хранени€ радиуса рисуемых кругов
 		Random rand;      // объект, дл€ получени€ случайных чисел
 
@@ -75,6 +77,7 @@ namespace ANIME {
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->timer2 = (gcnew System::Windows::Forms::Timer(this->components));
+			this->timer3 = (gcnew System::Windows::Forms::Timer(this->components));
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -208,8 +211,9 @@ namespace ANIME {
 		gr->Clear(Color::MediumBlue);
 		gr->FillEllipse(fig, objectPosition->X, objectPosition->Y, rad, rad);
 		gr->DrawEllipse(p, objectPosition->X, objectPosition->Y, rad, rad);
-		objectPosition->X++;
-		objectPosition->Y++;
+		objectPosition->X--;
+		objectPosition->Y--;
+		rad++ ;
 	}
 	};
 }
