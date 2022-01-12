@@ -23,6 +23,8 @@ namespace ANIME {
 		SolidBrush^ fon = gcnew SolidBrush(Color::HotPink);    //объ€вл€ем объект - заливки, дл€ заливки соответственно фона
 		SolidBrush^ fig = gcnew SolidBrush(Color::Black);    //и внутренности рисуемой фигуры
 	private: System::Windows::Forms::Timer^ timer3;
+	private: System::Windows::Forms::Button^ button4;
+	public:
 	public:
 		int rad = 49;          // переменна€ дл€ хранени€ радиуса рисуемых кругов
 		Random rand;      // объект, дл€ получени€ случайных чисел
@@ -56,7 +58,6 @@ namespace ANIME {
 	private: System::Windows::Forms::Timer^ timer1;
 	private: System::Windows::Forms::Timer^ timer2;
 	private: System::ComponentModel::IContainer^ components;
-
 	private:
 		/// <summary>
 		/// ќб€зательна€ переменна€ конструктора.
@@ -78,6 +79,7 @@ namespace ANIME {
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->timer2 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->timer3 = (gcnew System::Windows::Forms::Timer(this->components));
+			this->button4 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -128,11 +130,27 @@ namespace ANIME {
 			this->timer2->Interval = 10;
 			this->timer2->Tick += gcnew System::EventHandler(this, &Anime::timer2_Tick);
 			// 
+			// timer3
+			// 
+			this->timer3->Interval = 600;
+			this->timer3->Tick += gcnew System::EventHandler(this, &Anime::timer3_Tick);
+			// 
+			// button4
+			// 
+			this->button4->Location = System::Drawing::Point(650, 599);
+			this->button4->Name = L"button4";
+			this->button4->Size = System::Drawing::Size(218, 49);
+			this->button4->TabIndex = 4;
+			this->button4->Text = L"—ложные фигуры";
+			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &Anime::button4_Click);
+			// 
 			// Anime
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1121, 660);
+			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
@@ -213,7 +231,32 @@ namespace ANIME {
 		gr->DrawEllipse(p, objectPosition->X, objectPosition->Y, rad, rad);
 		objectPosition->X--;
 		objectPosition->Y--;
-		rad++ ;
+		rad++;
+	}
+	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+		timer3->Enabled = true;
+	}
+	private: System::Void timer3_Tick(System::Object^ sender, System::EventArgs^ e) {
+		gr->Clear(Color::Lavender);
+
+		// затем оп€ть случайным образом выбираем координаты центров кругов
+		// и рисуем их при помощи описанной нами функции
+		int x, y;
+
+		//points = gcnew (System::Drawing::Point );
+		for (int i = 0; i < 15; i++)
+		{
+			x = rand.Next(pictureBox1->Width);
+			y = rand.Next(pictureBox1->Height);
+			array<System::Drawing::Point>^ points = gcnew array<Point>(3);
+			for (int i = 0; i < 3; i++) {
+				points[i].X = x + rand.Next(50);
+				points[i].Y = y + rand.Next(50);
+			}
+			
+			gr->FillPolygon(fig, points);
+		}
+
 	}
 	};
 }
