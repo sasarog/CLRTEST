@@ -16,7 +16,7 @@ namespace ANIME {
 	public ref class Anime : public System::Windows::Forms::Form
 	{
 	public:
-		Image^ img;
+		
 		Point^ objectPosition = gcnew Point(100, 100);
 		Graphics^ gr;       //объ€вл€ем объект - графику, на которой будем рисовать
 		Pen^ p;             //объ€вл€ем объект - карандаш, которым будем рисовать контур
@@ -189,8 +189,8 @@ namespace ANIME {
 		}
 	}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		//сначала будем очищать область рисовани€ цветом фона
-
+		
+		//включаем таймер
 		timer1->Enabled = true;
 	}
 	private: Void AddText(FileStream^ fs, String^ value)
@@ -248,6 +248,7 @@ namespace ANIME {
 		{
 			x = rand.Next(pictureBox1->Width);
 			y = rand.Next(pictureBox1->Height);
+			//массив дл€ рисовани€ объектов
 			array<System::Drawing::Point>^ points = gcnew array<Point>(3);
 			for (int i = 0; i < 3; i++) {
 				points[i].X = x + rand.Next(50);
