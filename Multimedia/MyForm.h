@@ -8,6 +8,7 @@ namespace Multimedia {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Windows::Media;
 
 	/// <summary>
 	/// Сводка для MyForm
@@ -35,7 +36,10 @@ namespace Multimedia {
 			}
 		}
 	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::PictureBox^ pictureBox1;
+
+	private: System::Windows::Rect^ rect;
+	private: AxWMPLib::AxWindowsMediaPlayer^ axWindowsMediaPlayer1;
+
 	protected:
 
 	private:
@@ -51,9 +55,10 @@ namespace Multimedia {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			this->axWindowsMediaPlayer1 = (gcnew AxWMPLib::AxWindowsMediaPlayer());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->axWindowsMediaPlayer1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// button1
@@ -66,24 +71,25 @@ namespace Multimedia {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
 			// 
-			// pictureBox1
+			// axWindowsMediaPlayer1
 			// 
-			this->pictureBox1->Location = System::Drawing::Point(87, 31);
-			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(975, 294);
-			this->pictureBox1->TabIndex = 1;
-			this->pictureBox1->TabStop = false;
+			this->axWindowsMediaPlayer1->Enabled = true;
+			this->axWindowsMediaPlayer1->Location = System::Drawing::Point(348, 41);
+			this->axWindowsMediaPlayer1->Name = L"axWindowsMediaPlayer1";
+			this->axWindowsMediaPlayer1->OcxState = (cli::safe_cast<System::Windows::Forms::AxHost::State^>(resources->GetObject(L"axWindowsMediaPlayer1.OcxState")));
+			this->axWindowsMediaPlayer1->Size = System::Drawing::Size(769, 504);
+			this->axWindowsMediaPlayer1->TabIndex = 3;
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1194, 617);
-			this->Controls->Add(this->pictureBox1);
+			this->ClientSize = System::Drawing::Size(1378, 753);
+			this->Controls->Add(this->axWindowsMediaPlayer1);
 			this->Controls->Add(this->button1);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->axWindowsMediaPlayer1))->EndInit();
 			this->ResumeLayout(false);
 
 		}
@@ -91,20 +97,16 @@ namespace Multimedia {
 
 		/*
 		* Для подключения нужных библиотек, пройти по пути
-		: C:\Program Files\Reference Assemblies\Microsoft\Framework\v3.0 in 
+		: C:\Program Files\Reference Assemblies\Microsoft\Framework\v3.0 in
 		Выбрать файлы
-		PresentationCore.dll, PresentationFramework.dll, 
+		PresentationCore.dll, PresentationFramework.dll,
 		WindowsBase.dll, WindowsFormsIntegration.dll
 		*/
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		OpenFileDialog ofd;
 		ofd.ShowDialog();
-		System::Windows::Media::MediaPlayer^ medp = gcnew System::Windows::Media::MediaPlayer();
-		System::TimeSpan^ timespan = gcnew System::TimeSpan;
-		medp->Open(gcnew Uri(ofd.FileName));
-		System::Windows::Media::VideoDrawing^ viddraw = gcnew System::Windows::Media::VideoDrawing();
-		viddraw->Player = medp;
-		medp->Play();
+		axWindowsMediaPlayer1->URL = ofd.FileName;
+		
 	}
 	};
 }

@@ -140,7 +140,13 @@ namespace CLRTEST {
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		int strok, stolb;
 		//Узнаём количество столбцов
-		stolb = Convert::ToInt32(numericUpDown1->Value);
+		try {
+			stolb = Convert::ToInt32(numericUpDown1->Value);
+		}
+		catch (FormatException^ ex) {
+			MessageBox::Show("DAWN");
+			return;
+		}
 		//узнаём количество строк
 		strok = dataGridView1->RowCount - 1;
 		//двухмерный динамический массив

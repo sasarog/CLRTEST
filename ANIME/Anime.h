@@ -17,6 +17,7 @@ namespace ANIME {
 	{
 	public:
 		
+
 		Point^ objectPosition = gcnew Point(100, 100);
 		Graphics^ gr;       //объ€вл€ем объект - графику, на которой будем рисовать
 		Pen^ p;             //объ€вл€ем объект - карандаш, которым будем рисовать контур
