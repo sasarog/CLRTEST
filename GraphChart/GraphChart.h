@@ -41,7 +41,7 @@ namespace GraphChart {
 	private: System::Data::DataTable^ dataTable1;
 	private: System::Data::DataColumn^ dataColumn1;
 	private: System::Data::DataColumn^ dataColumn2;
-	private: System::Data::DataTable^ Таблица ;
+	private: System::Data::DataTable^ Таблица;
 
 
 
@@ -50,7 +50,7 @@ namespace GraphChart {
 		/// <summary>
 		/// Обязательная переменная конструктора.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -133,7 +133,7 @@ namespace GraphChart {
 	private: System::Void GraphChart_Load(System::Object^ sender, System::EventArgs^ e) {
 		ПереключательДиаграммы = false;
 		this->Text = "Щелкните на графике";
-		
+
 		// В этой таблице заказываем две колонки "Месяц" и "Объем продаж":
 		Таблица->Columns->Add("Месяц", String::typeid);
 		// Значения во второй колонке назначаем типа long:
@@ -183,18 +183,18 @@ namespace GraphChart {
 		chart1->DataBind();
 		// Для сетки данных указываем источник данных
 		dataGridView1->DataSource = Таблица;
-		
+
 	}
 
 
-	
-private: System::Void chart1_Click(System::Object^ sender, System::EventArgs^ e) {
-	ПереключательДиаграммы = !ПереключательДиаграммы;
-	// Изображение столбиков гистограммы в виде цилиндра:
-	if (ПереключательДиаграммы == true)
-		chart1->Series["Series1"]->ChartType = DataVisualization::Charting::SeriesChartType::Line;
-	else
-		chart1->Series["Series1"]->ChartType = DataVisualization::Charting::SeriesChartType::Radar;
-}
-};
+
+	private: System::Void chart1_Click(System::Object^ sender, System::EventArgs^ e) {
+		ПереключательДиаграммы = !ПереключательДиаграммы;
+		// Изображение столбиков гистограммы в виде цилиндра:
+		if (ПереключательДиаграммы == true)
+			chart1->Series["Series1"]->ChartType = DataVisualization::Charting::SeriesChartType::Line;
+		else
+			chart1->Series["Series1"]->ChartType = DataVisualization::Charting::SeriesChartType::Radar;
+	}
+	};
 }
