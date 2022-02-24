@@ -86,7 +86,6 @@ namespace ToolMenu {
 			// 
 			// menuStrip1
 			// 
-			this->menuStrip1->GripMargin = System::Windows::Forms::Padding(2, 2, 0, 2);
 			this->menuStrip1->ImageScalingSize = System::Drawing::Size(40, 40);
 			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
 				this->ôàéëToolStripMenuItem,
@@ -95,7 +94,7 @@ namespace ToolMenu {
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
 			this->menuStrip1->Padding = System::Windows::Forms::Padding(3, 1, 0, 1);
-			this->menuStrip1->Size = System::Drawing::Size(1908, 47);
+			this->menuStrip1->Size = System::Drawing::Size(1908, 26);
 			this->menuStrip1->TabIndex = 0;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -106,27 +105,27 @@ namespace ToolMenu {
 					this->âûõîäToolStripMenuItem
 			});
 			this->ôàéëToolStripMenuItem->Name = L"ôàéëToolStripMenuItem";
-			this->ôàéëToolStripMenuItem->Size = System::Drawing::Size(112, 45);
+			this->ôàéëToolStripMenuItem->Size = System::Drawing::Size(59, 24);
 			this->ôàéëToolStripMenuItem->Text = L"Ôàéë";
 			// 
 			// öâåòÔîíàToolStripMenuItem
 			// 
 			this->öâåòÔîíàToolStripMenuItem->Name = L"öâåòÔîíàToolStripMenuItem";
-			this->öâåòÔîíàToolStripMenuItem->Size = System::Drawing::Size(448, 54);
+			this->öâåòÔîíàToolStripMenuItem->Size = System::Drawing::Size(166, 26);
 			this->öâåòÔîíàToolStripMenuItem->Text = L"Öâåò Ôîíà";
 			this->öâåòÔîíàToolStripMenuItem->Click += gcnew System::EventHandler(this, &MenuForm::öâåòÔîíàToolStripMenuItem_Click);
 			// 
 			// âûõîäToolStripMenuItem
 			// 
 			this->âûõîäToolStripMenuItem->Name = L"âûõîäToolStripMenuItem";
-			this->âûõîäToolStripMenuItem->Size = System::Drawing::Size(448, 54);
+			this->âûõîäToolStripMenuItem->Size = System::Drawing::Size(166, 26);
 			this->âûõîäToolStripMenuItem->Text = L"Âûõîä";
 			this->âûõîäToolStripMenuItem->Click += gcnew System::EventHandler(this, &MenuForm::âûõîäToolStripMenuItem_Click);
 			// 
 			// ïðàâêàToolStripMenuItem
 			// 
 			this->ïðàâêàToolStripMenuItem->Name = L"ïðàâêàToolStripMenuItem";
-			this->ïðàâêàToolStripMenuItem->Size = System::Drawing::Size(142, 45);
+			this->ïðàâêàToolStripMenuItem->Size = System::Drawing::Size(74, 24);
 			this->ïðàâêàToolStripMenuItem->Text = L"Ïðàâêà";
 			// 
 			// contextMenuStrip1
@@ -137,18 +136,18 @@ namespace ToolMenu {
 					this->âûâåñòèÀìîãóToolStripMenuItem
 			});
 			this->contextMenuStrip1->Name = L"contextMenuStrip1";
-			this->contextMenuStrip1->Size = System::Drawing::Size(348, 100);
+			this->contextMenuStrip1->Size = System::Drawing::Size(209, 52);
 			// 
 			// ñìåíèòüÍàçâàíèåToolStripMenuItem
 			// 
 			this->ñìåíèòüÍàçâàíèåToolStripMenuItem->Name = L"ñìåíèòüÍàçâàíèåToolStripMenuItem";
-			this->ñìåíèòüÍàçâàíèåToolStripMenuItem->Size = System::Drawing::Size(347, 48);
+			this->ñìåíèòüÍàçâàíèåToolStripMenuItem->Size = System::Drawing::Size(208, 24);
 			this->ñìåíèòüÍàçâàíèåToolStripMenuItem->Text = L"Ñìåíèòü íàçâàíèå";
 			// 
 			// âûâåñòèÀìîãóToolStripMenuItem
 			// 
 			this->âûâåñòèÀìîãóToolStripMenuItem->Name = L"âûâåñòèÀìîãóToolStripMenuItem";
-			this->âûâåñòèÀìîãóToolStripMenuItem->Size = System::Drawing::Size(347, 48);
+			this->âûâåñòèÀìîãóToolStripMenuItem->Size = System::Drawing::Size(208, 24);
 			this->âûâåñòèÀìîãóToolStripMenuItem->Text = L"Âûâåñòè àìîãó";
 			this->âûâåñòèÀìîãóToolStripMenuItem->Click += gcnew System::EventHandler(this, &MenuForm::âûâåñòèÀìîãóToolStripMenuItem_Click);
 			// 
@@ -182,19 +181,20 @@ namespace ToolMenu {
 					this->óäàëèòüToolStripMenuItem
 			});
 			this->contextMenuStrip2->Name = L"contextMenuStrip2";
-			this->contextMenuStrip2->Size = System::Drawing::Size(361, 155);
+			this->contextMenuStrip2->Size = System::Drawing::Size(211, 80);
+			this->contextMenuStrip2->Opening += gcnew System::ComponentModel::CancelEventHandler(this, &MenuForm::contextMenuStrip2_Opening);
 			// 
 			// äîáàâèòüToolStripMenuItem
 			// 
 			this->äîáàâèòüToolStripMenuItem->Name = L"äîáàâèòüToolStripMenuItem";
-			this->äîáàâèòüToolStripMenuItem->Size = System::Drawing::Size(360, 48);
+			this->äîáàâèòüToolStripMenuItem->Size = System::Drawing::Size(210, 24);
 			this->äîáàâèòüToolStripMenuItem->Text = L"Äîáàâèòü";
 			this->äîáàâèòüToolStripMenuItem->Click += gcnew System::EventHandler(this, &MenuForm::äîáàâèòüToolStripMenuItem_Click);
 			// 
 			// óäàëèòüToolStripMenuItem
 			// 
 			this->óäàëèòüToolStripMenuItem->Name = L"óäàëèòüToolStripMenuItem";
-			this->óäàëèòüToolStripMenuItem->Size = System::Drawing::Size(360, 48);
+			this->óäàëèòüToolStripMenuItem->Size = System::Drawing::Size(210, 24);
 			this->óäàëèòüToolStripMenuItem->Text = L"Óäàëèòü";
 			this->óäàëèòüToolStripMenuItem->Click += gcnew System::EventHandler(this, &MenuForm::óäàëèòüToolStripMenuItem_Click);
 			// 
@@ -210,6 +210,7 @@ namespace ToolMenu {
 			this->Margin = System::Windows::Forms::Padding(2);
 			this->Name = L"MenuForm";
 			this->Text = L"MenuForm";
+			this->Load += gcnew System::EventHandler(this, &MenuForm::MenuForm_Load);
 			this->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MenuForm::MenuForm_MouseDown);
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
@@ -268,5 +269,9 @@ namespace ToolMenu {
 	private: System::Void óäàëèòüToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 		listBox1->Items->Remove(listBox1->SelectedItem);
 	}
+private: System::Void MenuForm_Load(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void contextMenuStrip2_Opening(System::Object^ sender, System::ComponentModel::CancelEventArgs^ e) {
+}
 };
 }

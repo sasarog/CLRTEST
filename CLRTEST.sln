@@ -17,6 +17,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GraphChart", "GraphChart\Gr
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ToolMenu", "ToolMenu\ToolMenu.vcxproj", "{3E718193-FBC5-40F1-B481-08E7F8B4D818}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Multistring", "Multistring\Multistring.vcxproj", "{A620FCDC-CCB8-45EB-BE9F-FCE2957B51CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +113,18 @@ Global
 		{3E718193-FBC5-40F1-B481-08E7F8B4D818}.Release|x64.Build.0 = Release|x64
 		{3E718193-FBC5-40F1-B481-08E7F8B4D818}.Release|x86.ActiveCfg = Release|Win32
 		{3E718193-FBC5-40F1-B481-08E7F8B4D818}.Release|x86.Build.0 = Release|Win32
+		{A620FCDC-CCB8-45EB-BE9F-FCE2957B51CF}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{A620FCDC-CCB8-45EB-BE9F-FCE2957B51CF}.Debug|Any CPU.Build.0 = Debug|x64
+		{A620FCDC-CCB8-45EB-BE9F-FCE2957B51CF}.Debug|x64.ActiveCfg = Debug|x64
+		{A620FCDC-CCB8-45EB-BE9F-FCE2957B51CF}.Debug|x64.Build.0 = Debug|x64
+		{A620FCDC-CCB8-45EB-BE9F-FCE2957B51CF}.Debug|x86.ActiveCfg = Debug|Win32
+		{A620FCDC-CCB8-45EB-BE9F-FCE2957B51CF}.Debug|x86.Build.0 = Debug|Win32
+		{A620FCDC-CCB8-45EB-BE9F-FCE2957B51CF}.Release|Any CPU.ActiveCfg = Release|x64
+		{A620FCDC-CCB8-45EB-BE9F-FCE2957B51CF}.Release|Any CPU.Build.0 = Release|x64
+		{A620FCDC-CCB8-45EB-BE9F-FCE2957B51CF}.Release|x64.ActiveCfg = Release|x64
+		{A620FCDC-CCB8-45EB-BE9F-FCE2957B51CF}.Release|x64.Build.0 = Release|x64
+		{A620FCDC-CCB8-45EB-BE9F-FCE2957B51CF}.Release|x86.ActiveCfg = Release|Win32
+		{A620FCDC-CCB8-45EB-BE9F-FCE2957B51CF}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
